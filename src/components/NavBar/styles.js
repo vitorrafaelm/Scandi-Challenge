@@ -17,8 +17,11 @@ export const NavBarContainer = styled.div`
     width: 100%; 
     max-width: 1000px; 
 
-    
     background-color: white;
+
+    @media(max-width: 568px){
+        padding: 0px 16px;
+    }
 `; 
 
 export const IgBrand = styled.img`
@@ -35,6 +38,10 @@ export const DivInput = styled.div`
     border: solid 1px #dbdbdb;
     border-radius: 3px;
     padding: 5px 10px 5px 16px;
+
+    @media(max-width: 568px){
+        display: none;
+    }
 `; 
 
 export const Input = styled.input`

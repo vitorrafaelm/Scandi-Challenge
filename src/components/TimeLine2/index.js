@@ -18,35 +18,37 @@ let style = {
 const TimeLine2 = ({ slides }) => {
     const [current, setCurrent] = useState(0);
     const length = slides.length;
-
+    
     const nextSlide = () => {
         setCurrent(current === length - 1 ? 0 : current + 1)
-        console.log("ok")
     }
 
     const prevSlide = () => {
         setCurrent(current === 0 ? length - 1 : current - 1)
-        console.log("ok")
     }
 
     if (!Array.isArray(slides) || slides.length <= 0) {
         return null;
     }
+    const [touchStart, setTouchStart] = useState();
+    const [change, setChange] = useState(); 
+    const [clas, setClas] = useState(); 
 
-    var indicators = null;
-    function createIndicators() {
-        return SliderData.map((index) => {
-            return (
-                <>
-                    <div className={index === current ? 'indicators active' : ''} ></div>
-                </>
-            )
-
-        })
+    const touchStartFunction = (e) => {
+        console.log(e.touches[0].clientX)
     }
 
-    indicators = createIndicators();
-    console.log(indicators)
+    const touchMove = (e) => {
+        let value = e.touches[0].clientX; 
+        setChange(touchStart - value)
+    }
+
+    const touchEnd = (e) => {
+        if(change > 0){
+            setClas('changed')
+        }
+    }
+
     return (
         <DivPosts>
             <ArticleTimeLine>
@@ -58,19 +60,18 @@ const TimeLine2 = ({ slides }) => {
                     <FaEllipsisH style={style} size={20} />
                 </Header>
                 <Body>
-                    <FaArrowAltCircleLeft size={20} color="#fff" className="left-arrow" onClick={prevSlide} />
-                    <FaArrowAltCircleRight size={20} color="#fff" className="right-arrow" onClick={nextSlide} />
+                    <FaArrowAltCircleLeft size={20} color="#fff" className={current === 0 ? 'left-arrow hide' : 'left-arrow'} onClick={prevSlide} />
+                    <FaArrowAltCircleRight size={20} color="#fff" className={current === length -1 ? 'right-arrow hide' : 'right-arrow'} onClick={nextSlide} />
 
                     {SliderData.map((slide, index) => {
                         return (
-                            <div key={index} className={index === current ? "slide active" : "slide"}>
-                                <Img className="image" src={slide.image} alt="travel image" />
+                            <div key={index} className={index === current ? `slide active` : "slide"} >
+                                <Img src={slide.image} />
                                 <div className="indicators">
                                     {SliderData.map((b,i) => {
-                                         console.log(i);
                                         return (
                                             <>
-                                                <div className={index === i ? 'indicators active' : ''} ></div>
+                                                <div key={i} className={index === i ? 'indicators active' : ''} ></div>
                                             </>
                                         )
                                         
@@ -79,8 +80,6 @@ const TimeLine2 = ({ slides }) => {
                             </div>
                         )
                     })}
-
-
                 </Body>
             </ArticleTimeLine>
         </DivPosts>
