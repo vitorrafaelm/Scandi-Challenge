@@ -1,80 +1,71 @@
 body{
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .right-arrow{
-    position: absolute;
-    top: 50%; 
-    right: 2px; 
-    color: #000; 
-    z-index: 10; 
-    cursor: pointer;
-    user-select: none;
-  }
+  position: absolute;
+  top: 50%; 
+  right: 2px; 
+  z-index: 10; 
+  cursor: pointer;
+}
 
-  .right-arrow.hide{
-    display: none;
-  }
+.right-arrow.hide{
+  display: none;
+}
   
-  .left-arrow{
-    position: absolute;
-    top: 50%; 
-    left: 2px; 
-    color: #000; 
-    z-index: 10; 
-    cursor: pointer;
-    user-select: none;
-  }
+.left-arrow{
+  position: absolute;
+  top: 50%; 
+  left: 2px; 
+  z-index: 10; 
+  cursor: pointer;
+}
 
-  .left-arrow.hide{
-    display: none;
-  }
+.left-arrow.hide{
+  display: none;
+}
 
-  .slide {
-    opacity: 0;
-    position: absolute;
-    transition: 1s ease;
-  }
-  
-  .slide.active {
-    opacity: 1;
-    position: relative;
-    transition-duration: 1s;
-  }
+ul li{
+  list-style: none;
+}
 
-  .changed{
-    transform: translateX(-20%);
-  }
+.slide {
+  opacity: 0;
+  position: absolute;
+  transition: 1s ease;
+}
   
-  .indicators{
-    display: flex; 
-    justify-content: center;
-  }
+.slide.active {
+  opacity: 1;
+  position: relative;
+  transition-duration: 1s;
+}
   
-  .indicators div:first{
-    width: 10px;
-    height: 10px;
+.indicators{
+  display: flex; 
+  justify-content: center;
+}
   
-    border: 1px solid #ccc; 
-    border-radius: 1rem;
-    margin-top: 0.5rem;
-  }
+.indicators div:first{
+  margin-left: 0;
+}
 
-  .indicators div{
-    width: 10px;
-    height: 10px;
+.indicators div{
+  width: 10px;
+  height: 10px;
   
-    border: 1px solid #ccc; 
-    border-radius: 1rem;
-    margin-top: 0.5rem;
-    margin-left: 1rem;
-    transition: 1s ease;
-  }
+  border: 1px solid #ccc; 
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  transition: 1s ease-in-out;
+}
   
-  .indicators.active {
-    background-color: #ccc;
-    transition-duration: 1s;
-  }
+.indicators.active {
+  background-color: rgb(98, 98, 226);
+  transition-duration: 2s;
+}
 

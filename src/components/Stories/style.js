@@ -6,7 +6,7 @@ export const DivStories = styled.div`
 
     max-width: 600px;
     padding: 16px 0px;
-
+    background-color: #fff;
     border: 1px solid #dbdbdb;
     border-radius: 3px;
 `; 

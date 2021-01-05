@@ -9,44 +9,26 @@ import { FaEllipsisH, FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-
 
 import foto from '../../Assets/foto.jpg';
 import './style.scss';
-import { SliderData } from './sliderData';
+import { ImagesToTheSlide } from './sliderImages';
 
 let style = {
     marginRight: '1rem'
 }
 
 const TimeLine2 = ({ slides }) => {
-    const [current, setCurrent] = useState(0);
-    const length = slides.length;
+    const [acutalValue, setAcutalValue] = useState(0);
+    const length = ImagesToTheSlide.length;
     
     const nextSlide = () => {
-        setCurrent(current === length - 1 ? 0 : current + 1)
+        setAcutalValue(acutalValue === length - 1 ? 0 : acutalValue + 1)
     }
 
-    const prevSlide = () => {
-        setCurrent(current === 0 ? length - 1 : current - 1)
+    const previousSlide = () => {
+        setAcutalValue(acutalValue === 0 ? length - 1 : acutalValue - 1)
     }
 
-    if (!Array.isArray(slides) || slides.length <= 0) {
+    if (!Array.isArray(ImagesToTheSlide) || ImagesToTheSlide.length <= 0) {
         return null;
-    }
-    const [touchStart, setTouchStart] = useState();
-    const [change, setChange] = useState(); 
-    const [clas, setClas] = useState(); 
-
-    const touchStartFunction = (e) => {
-        console.log(e.touches[0].clientX)
-    }
-
-    const touchMove = (e) => {
-        let value = e.touches[0].clientX; 
-        setChange(touchStart - value)
-    }
-
-    const touchEnd = (e) => {
-        if(change > 0){
-            setClas('changed')
-        }
     }
 
     return (
@@ -60,24 +42,26 @@ const TimeLine2 = ({ slides }) => {
                     <FaEllipsisH style={style} size={20} />
                 </Header>
                 <Body>
-                    <FaArrowAltCircleLeft size={20} color="#fff" className={current === 0 ? 'left-arrow hide' : 'left-arrow'} onClick={prevSlide} />
-                    <FaArrowAltCircleRight size={20} color="#fff" className={current === length -1 ? 'right-arrow hide' : 'right-arrow'} onClick={nextSlide} />
+                    <FaArrowAltCircleLeft size={20} color="#fff" className={acutalValue === 0 ? 'left-arrow hide' : 'left-arrow'} onClick={previousSlide} />
+                    <FaArrowAltCircleRight size={20} color="#fff" className={acutalValue === length -1 ? 'right-arrow hide' : 'right-arrow'} onClick={nextSlide} />
 
-                    {SliderData.map((slide, index) => {
+                    {ImagesToTheSlide.map((slide, index) => {
                         return (
-                            <div key={index} className={index === current ? `slide active` : "slide"} >
-                                <Img src={slide.image} />
-                                <div className="indicators">
-                                    {SliderData.map((b,i) => {
-                                        return (
-                                            <>
-                                                <div key={i} className={index === i ? 'indicators active' : ''} ></div>
-                                            </>
-                                        )
-                                        
-                                    })}
-                                </div>
-                            </div>
+                            <ul key={index} className={index === acutalValue ? `slide active` : "slide"} >
+                                <li>
+                                    <Img src={slide.image} />
+                                    <div className="indicators">
+                                        {ImagesToTheSlide.map((b,i) => {
+                                            return (
+                                                <>
+                                                    <div key={i.toString()} className={index === i ? 'indicators active' : ''} ></div>
+                                                </>
+                                            )
+                                            
+                                        })}
+                                    </div>
+                                </li>
+                            </ul>
                         )
                     })}
                 </Body>
