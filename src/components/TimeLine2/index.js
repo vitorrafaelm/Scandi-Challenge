@@ -15,7 +15,7 @@ let style = {
     marginRight: '1rem'
 }
 
-const TimeLine2 = ({ slides }) => {
+const TimeLine2 = () => {
     const [acutalValue, setAcutalValue] = useState(0);
     const length = ImagesToTheSlide.length;
     
@@ -44,7 +44,7 @@ const TimeLine2 = ({ slides }) => {
                 <Body>
                     <FaArrowAltCircleLeft size={20} color="#fff" className={acutalValue === 0 ? 'left-arrow hide' : 'left-arrow'} onClick={previousSlide} />
                     <FaArrowAltCircleRight size={20} color="#fff" className={acutalValue === length -1 ? 'right-arrow hide' : 'right-arrow'} onClick={nextSlide} />
-
+                    
                     {ImagesToTheSlide.map((slide, index) => {
                         return (
                             <ul key={index} className={index === acutalValue ? `slide active` : "slide"} >
